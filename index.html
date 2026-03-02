@@ -69,18 +69,18 @@ nav a{
 }
 
 .products{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    justify-items: center;
 }
 
 .card{
     background:white;
     padding:25px;
-    width:260px;
     border-radius:20px;
     box-shadow:0 10px 25px rgba(183,110,121,0.15);
+    text-align:center;
 }
 
 .card h3{
@@ -104,6 +104,14 @@ nav a{
 
 .btn:hover{
     background:#8c4c57;
+}
+
+    .card img{
+    border-radius: 15px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    height: 160px;
+    width: 100%;
 }
 
 /* CART */
