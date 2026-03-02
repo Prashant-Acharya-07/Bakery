@@ -68,6 +68,13 @@ nav a{
     color:#b76e79;
 }
 
+    .card img {
+    width: 100%;          /* makes image fill card width */
+    height: 180px;        /* fixes height so all images are same size */
+    object-fit: cover;    /* crops image nicely without stretching */
+    border-radius: 15px;  /* optional rounded corners */
+}
+    
 .products {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* exactly 4 cards per row */
