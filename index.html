@@ -77,10 +77,12 @@ nav a{
     
 .products {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* exactly 4 cards per row */
+    grid-template-columns: repeat(4, 1fr); /* 4 per row on desktop */
     gap: 25px;
+    margin: 0 auto;
 }
-    @media (max-width: 1024px) {
+
+@media (max-width: 1024px) {
     .products {
         grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
     }
@@ -90,6 +92,14 @@ nav a{
     .products {
         grid-template-columns: 1fr; /* 1 per row on mobile */
     }
+}
+
+.card img {
+    width: 100%;
+    height: 180px;       /* same height for all images */
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
 }
 
 .card{
@@ -123,12 +133,7 @@ nav a{
     background:#8c4c57;
 }
 
-   .card img {
-    width: 100%;
-    height: 180px; /* change to 160px or 200px if needed */
-    object-fit: cover;
-    border-radius: 15px;
-}
+  
 
 /* CART */
 .cart{
