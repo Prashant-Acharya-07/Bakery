@@ -3,404 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Crumbs Bakery</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>Haus of Bakes</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-  .whatsapp-float{
-    position:fixed;
-    bottom:90px; /* above cart button */
-    right:20px;
-    background:#25D366;
-    color:white;
-    font-size:28px;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
-    z-index:1500;
-    transition:0.3s;
-}
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #fff6f9;
+        color: #5a4a4a;
+    }
 
-.whatsapp-float:hover{
-    transform:scale(1.1);
-}
+    header {
+        background: #f8d7e3;
+        padding: 30px 20px;
+        text-align: center;
+    }
 
-  
-  .cart-panel{
-position:fixed;
-right:-400px;
-top:0;
-width:350px;
-height:100%;
-background:white;
-box-shadow:-5px 0 20px rgba(0,0,0,0.2);
-padding:20px;
-transition:0.4s;
-overflow-y:auto;
-z-index:2000;
-}
+    header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 42px;
+        color: #b76e79;
+    }
 
-.cart-panel.active{
-right:0;
-}
+    header p {
+        margin-top: 10px;
+        font-size: 16px;
+        color: #7a5c61;
+    }
 
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin-bottom:10px;
-font-size:14px;
-}
+    nav {
+        text-align: center;
+        padding: 15px;
+        background: #fff0f5;
+    }
 
-.remove{
-color:red;
-cursor:pointer;
-}
+    nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #b76e79;
+        font-weight: 500;
+        transition: 0.3s;
+    }
 
-.cart-btn{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#ff7e5f;
-color:white;
-padding:15px;
-border-radius:50%;
-cursor:pointer;
-font-size:20px;
-z-index:1500;
-}
+    nav a:hover {
+        color: #8c4c57;
+    }
 
-input, textarea{
-width:100%;
-padding:8px;
-margin-top:8px;
-border-radius:5px;
-border:1px solid #ccc;
-}
+    .hero {
+        text-align: center;
+        padding: 80px 20px;
+        background: linear-gradient(to right, #ffe4ec, #fff6f9);
+    }
 
-.order-btn{
-margin-top:15px;
-width:100%;
-padding:12px;
-background:#28a745;
-color:white;
-border:none;
-cursor:pointer;
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#fffaf5;color:#333;transition:0.4s}
-body.dark{background:#1e1e1e;color:#fff}
+    .hero h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 36px;
+        margin-bottom: 15px;
+        color: #b76e79;
+    }
 
-header{
-display:flex;justify-content:space-between;align-items:center;
-padding:20px 40px;
-background:linear-gradient(45deg,#ff7e5f,#feb47b);
-color:white;position:sticky;top:0;z-index:1000
-}
+    .hero p {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
 
-nav a{color:white;margin-left:20px;text-decoration:none}
-.toggle{cursor:pointer;background:white;color:#ff7e5f;padding:5px 15px;border-radius:20px}
+    .btn {
+        background-color: #b76e79;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.3s;
+    }
 
-.hero{
-height:90vh;display:flex;justify-content:center;align-items:center;
-position:relative;overflow:hidden
-}
+    .btn:hover {
+        background-color: #8c4c57;
+    }
 
-.slider{
-position:absolute;width:100%;height:100%;z-index:-1
-}
+    .section {
+        padding: 60px 20px;
+        text-align: center;
+    }
 
-.slide{
-position:absolute;width:100%;height:100%;
-background-size:cover;background-position:center;
-opacity:0;transition:1s
-}
-.slide.active{opacity:1}
+    .section h2 {
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 40px;
+        font-size: 30px;
+        color: #b76e79;
+    }
 
-.hero-content{text-align:center;color:white}
-.hero h1{font-size:50px}
-.btn{
-margin-top:20px;padding:12px 30px;border:none;
-border-radius:30px;background:#ff7e5f;color:white;
-cursor:pointer;transition:0.3s
-}
-.btn:hover{transform:scale(1.1)}
+    .products {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
 
-.section{padding:80px 40px;text-align:center}
-<div class="menu-grid">
-    <div class="card">
-        <h3>Chocolate Lava Cake</h3>
-        <p>Rich & gooey delight</p>
-        <div class="price">$18</div>
-        <button class="btn" onclick="addToCart('Chocolate Lava Cake',18)">Add to Cart</button>
-    </div>
+    .card {
+        background: white;
+        padding: 25px;
+        width: 260px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(183,110,121,0.15);
+        transition: 0.3s;
+    }
 
-    <div class="card">
-        <h3>Strawberry Cupcakes</h3>
-        <p>Sweet & fluffy treat</p>
-        <div class="price">$6</div>
-        <button class="btn" onclick="addToCart('Strawberry Cupcakes',6)">Add to Cart</button>
-    </div>
+    .card:hover {
+        transform: translateY(-8px);
+    }
 
-    <div class="card">
-        <h3>Classic Croissant</h3>
-        <p>Buttery perfection</p>
-        <div class="price">$4</div>
-        <button class="btn" onclick="addToCart('Classic Croissant',4)">Add to Cart</button>
-    </div>
-</div>
-.cart{
-position:fixed;right:-400px;top:0;width:350px;height:100%;
-background:white;box-shadow:-5px 0 20px rgba(0,0,0,0.2);
-padding:20px;transition:0.4s;overflow:auto;z-index:2000
-}
-body.dark .cart{background:#2b2b2b}
-.cart.active{right:0}
-.cart h2{text-align:center;margin-bottom:20px}
-.cart-item{margin-bottom:10px}
-.total{font-weight:bold;margin-top:20px}
-.checkout{
-margin-top:20px;width:100%;
-padding:10px;background:#ff7e5f;color:white;border:none;cursor:pointer
-}
+    .card h3 {
+        margin-bottom: 10px;
+        color: #b76e79;
+    }
 
-.cart-btn{
-position:fixed;bottom:20px;right:20px;
-background:#ff7e5f;color:white;padding:15px;
-border-radius:50%;cursor:pointer;font-size:20px;
-z-index:1500
-}
+    .about {
+        background: #ffeef3;
+    }
 
-.modal{
-position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.6);
-display:flex;justify-content:center;align-items:center;
-opacity:0;pointer-events:none;transition:0.3s
-}
-.modal.active{opacity:1;pointer-events:auto}
-.modal-content{
-background:white;padding:30px;border-radius:10px;text-align:center
-}
+    footer {
+        background: #f8d7e3;
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #7a5c61;
+    }
 
-.floating{
-position:absolute;font-size:40px;animation:float 6s infinite ease-in-out
-}
-.f1{top:20%;left:10%}
-.f2{top:70%;left:80%;animation-delay:2s}
-.f3{top:50%;left:50%;animation-delay:4s}
-
-@keyframes float{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-30px)}
-}
-
-footer{
-padding:20px;text-align:center;
-background:#ff7e5f;color:white
-}
+    @media(max-width: 768px) {
+        .products {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
 </style>
 </head>
+
 <body>
 
 <header>
-<h2>Royal Crumbs</h2>
-<nav>
-<a href="#menu">Menu</a>
-<a href="#contact">Contact</a>
-<span class="toggle" onclick="toggleDark()">🌙</span>
-</nav>
+    <img src="haus of bakery.jpeg" alt="Logo" width="60" 
+         style="vertical-align: middle; margin-right:10px;">
+    
+    <h1 style="display:inline;">Haus of Bakes</h1>
+    <p>Soft. Sweet. Beautifully Baked</p>
 </header>
 
-<section class="hero">
-<div class="slider">
-<div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1509440159596-0249088772ff')"></div>
-<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1499636136210-6f4ee915583e')"></div>
-<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1519864600265-abb23847ef2c')"></div>
-</div>
+<nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">Our Story</a>
+    <a href="#contact">Contact</a>
+</nav>
 
-<div class="floating f1">🧁</div>
-<div class="floating f2">🍰</div>
-<div class="floating f3">🥐</div>
-
-<div class="hero-content">
-<h1>Freshly Baked Happiness</h1>
-<button class="btn" onclick="toggleCart()">Order Now</button>
-</div>
+<section class="hero" id="home">
+    <h2>Freshly Baked with Love</h2>
+    <p>Where every bite feels like home.</p>
+    <button class="btn">Order Now</button>
 </section>
 
 <section class="section" id="menu">
-<h2>Our Special Menu</h2>
-<div class="menu-grid">
-<div class="card">
-<h3>Chocolate Cake</h3>
-<div class="price">$15</div>
-<button class="btn" onclick="addToCart('Chocolate Cake',15)">Add to Cart</button>
-</div>
-<div class="card">
-<h3>Strawberry Cupcake</h3>
-<div class="price">$6</div>
-<button class="btn" onclick="addToCart('Strawberry Cupcake',6)">Add to Cart</button>
-</div>
-<div class="card">
-<h3>Butter Croissant</h3>
-<div class="price">$4</div>
-<button class="btn" onclick="addToCart('Butter Croissant',4)">Add to Cart</button>
-</div>
-</div>
+    <h2>Our Favorites</h2>
+    <div class="products">
+        <div class="card">
+            <h3>Rose Vanilla Cake</h3>
+            <p>Light sponge layered with silky vanilla cream.</p>
+        </div>
+        <div class="card">
+            <h3>Strawberry Dream Pastry</h3>
+            <p>Soft cream, fresh strawberries & fluffy layers.</p>
+        </div>
+        <div class="card">
+            <h3>Classic Butter Croissant</h3>
+            <p>Golden, flaky & perfectly baked every morning.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section about" id="about">
+    <h2>Our Story</h2>
+    <p>Haus of Bakes was created with a passion for soft aesthetics and even softer pastries. 
+    We believe baking is an art of love, warmth, and delicate sweetness.</p>
 </section>
 
 <section class="section" id="contact">
-<h2>Contact Us</h2>
-<p>Email: acharyaprashant1000@gmail.com</p>
-<p>Phone: +977 9765501697</p>
+    <h2>Visit Us</h2>
+    <p>Email: hello@hausofbakes.com</p>
+    <p>Phone: +1 234 567 890</p>
+    <p>123 Blossom Street, Sweet City</p>
 </section>
 
-<div class="cart" id="cart">
-<h2>Your Cart</h2>
-<div id="cartItems"></div>
-<div class="total" id="total"></div>
-<button class="checkout" onclick="checkout()">Proceed to Payment</button>
-</div>
-
-<div class="cart-btn" onclick="toggleCart()">🛒</div>
-
-<div class="modal" id="modal">
-<div class="modal-content">
-<h2>Payment Successful 🎉</h2>
-<p>Thank you for your order!</p>
-<button class="btn" onclick="closeModal()">Close</button>
-</div>
-</div>
-
 <footer>
-© 2026 Royal Crumbs Bakery | Premium Experience
+    © 2026 Haus of Bakes | Made with love & sugar
 </footer>
 
-<script>
-const faders = document.querySelectorAll('.fade-in');
-
-window.addEventListener('scroll', () => {
-    faders.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if(rect.top < window.innerHeight - 100){
-            el.classList.add('show');
-        }
-    });
-});
-
-let cart = [];
-
-function toggleCart(){
-    let cartPanel = document.getElementById("cartPanel");
-    let overlay = document.getElementById("overlay");
-
-    cartPanel.classList.toggle("active");
-
-    if(cartPanel.classList.contains("active")){
-        overlay.style.display = "block";
-    } else {
-        overlay.style.display = "none";
-    }
-}{
-    document.getElementById("cartPanel").classList.toggle("active");
-}
-
-function addToCart(name, price){
-    let item = cart.find(p => p.name === name);
-    if(item){
-        item.quantity++;
-    } else {
-        cart.push({name, price, quantity:1});
-    }
-    updateCart();
-    toggleCart();
-}
-
-function updateCart(){
-    let cartDiv = document.getElementById("cartItems");
-    let totalDiv = document.getElementById("total");
-    cartDiv.innerHTML = "";
-    let total = 0;
-
-    cart.forEach((item,index)=>{
-        total += item.price * item.quantity;
-        cartDiv.innerHTML += `
-        <div class="cart-item">
-            ${item.name} x${item.quantity} - $${item.price*item.quantity}
-            <span class="remove" onclick="removeItem(${index})">✖</span>
-        </div>`;
-    });
-
-    totalDiv.innerText = "Total: $" + total;
-}
-
-function removeItem(index){
-    cart.splice(index,1);
-    updateCart();
-}
-
-function placeOrder(){
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let address = document.getElementById("address").value;
-
-    if(cart.length === 0){
-        alert("Your cart is empty!");
-        return;
-    }
-
-    if(name === "" || phone === "" || address === ""){
-        alert("Please fill all details!");
-        return;
-    }
-
-    alert("Order Placed Successfully 🎉\n\nThank you " + name + "!\nWe will contact you at " + phone);
-
-    cart = [];
-    updateCart();
-    document.getElementById("name").value="";
-    document.getElementById("phone").value="";
-    document.getElementById("address").value="";
-}
-  document.addEventListener("keydown", function(e){
-    if(e.key === "Escape"){
-        document.getElementById("cartPanel").classList.remove("active");
-        document.getElementById("overlay").style.display="none";
-    }
-});
-</script>
-<div class="cart-btn" onclick="toggleCart()">🛒</div>
-
-<div class="cart-panel" id="cartPanel">
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-        <h2>Your Cart</h2>
-        <span onclick="toggleCart()" style="cursor:pointer;font-size:20px;">✖</span>
-    </div>
-    <div id="cartItems"></div>
-    <h3 id="total"></h3>
-
-    <h3 style="margin-top:20px;">Customer Details</h3>
-    <input type="text" id="name" placeholder="Your Name">
-    <input type="text" id="phone" placeholder="Phone Number">
-    <textarea id="address" placeholder="Delivery Address"></textarea>
-
-    <button class="order-btn" onclick="placeOrder()">Place Order</button>
-</div>
-  <div id="overlay" onclick="toggleCart()" 
-style="position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.5);display:none;z-index:1500;">
-</div>
-
-  <a href="https://wa.me/9779765501697" 
-   class="whatsapp-float" 
-   target="_blank">
-   💬
-</a>
-  
 </body>
 </html>
