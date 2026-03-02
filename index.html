@@ -119,7 +119,6 @@ nav a{
     transition:0.4s;
     overflow-y:auto;
 }
-
 .cart.active{
     right:0;
 }
@@ -139,9 +138,80 @@ nav a{
 }
 
 .close-cart{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:none;
+    border:none;
+    font-size:20px;
     cursor:pointer;
     color:#b76e79;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float{
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:25px;
+    right:25px;
+    background:#25D366;
+    color:white;
+    border-radius:50%;
+    text-align:center;
+    font-size:30px;
+    line-height:60px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    z-index:1000;
+    text-decoration:none;
+}
+
+.whatsapp-float:hover{
+    background:#1ebe5d;
+}
+
+/* Cart upgrade */
+.cart-item{
+    margin-bottom:15px;
     font-size:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.quantity-controls{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.qty-btn{
+    background:#b76e79;
+    color:white;
+    border:none;
+    padding:4px 8px;
+    cursor:pointer;
+    border-radius:5px;
+}
+.remove-btn{
+    background:none;
+    border:none;
+    color:red;
+    cursor:pointer;
+}
+
+.order-btn{
+    margin-top:15px;
+    width:100%;
+}
+footer {
+    width: 100%;           /* full width */
+    text-align: center;     /* center the text horizontally */
+    padding: 20px 0;        /* space above & below */
+    font-size: 14px;        /* text size */
+    color: #7a5c61;         /* text color */
+    background: #f8d7e3;    /* background color */
+    margin: 0 auto;         /* remove default margin */
 }
 </style>
 </head>
@@ -200,11 +270,14 @@ nav a{
 
 <!-- CART SIDEBAR -->
 <div class="cart" id="cart">
-<span class="close-cart" onclick="toggleCart()">Close ✖</span>
+<button class="close-cart" onclick="toggleCart()">✖</button>
 <h3>Your Cart</h3>
 <div id="cart-items"></div>
 <div class="total">Total: $<span id="total">0</span></div>
+<button class="btn order-btn" onclick="orderViaWhatsApp()">Order via WhatsApp</button>
 </div>
+
+
 <section class="contact container" id="contact">
 <h2>Contact Haus of Bakes</h2>
 <div class="contact-info">
@@ -221,25 +294,97 @@ nav a{
 
 <script>
 let cart = [];
-let total = 0;
 
 function toggleCart(){
     document.getElementById("cart").classList.toggle("active");
 }
 
 function addToCart(name,price){
-    cart.push({name,price});
-    total += price;
+    let existingItem = cart.find(item => item.name === name);
 
-    document.getElementById("cart-count").innerText = cart.length;
-    document.getElementById("total").innerText = total;
+    if(existingItem){
+        existingItem.quantity += 1;
+    }else{
+        cart.push({name,price,quantity:1});
+    }
 
-    let item = document.createElement("div");
-    item.classList.add("cart-item");
-    item.innerText = name + " - $" + price;
-    document.getElementById("cart-items").appendChild(item);
+    updateCart();   // ONLY update count
+}
+
+function increaseQty(name){
+    let item = cart.find(item => item.name === name);
+    item.quantity += 1;
+    updateCart();
+}
+
+function decreaseQty(name){
+    let item = cart.find(item => item.name === name);
+    item.quantity -= 1;
+
+    if(item.quantity <= 0){
+        cart = cart.filter(i => i.name !== name);
+    }
+
+    updateCart();
+}
+
+function updateCart(){
+    let cartItems = document.getElementById("cart-items");
+    cartItems.innerHTML = "";
+
+    let total = 0;
+    let totalItems = 0;
+
+    cart.forEach(item=>{
+        total += item.price * item.quantity;
+        totalItems += item.quantity;
+
+        let div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML = `
+            <div>
+                <strong>${item.name}</strong><br>
+                $${item.price} each
+            </div>
+
+            <div class="quantity-controls">
+                <button class="qty-btn" onclick="decreaseQty('${item.name}')">−</button>
+                <span>${item.quantity}</span>
+                <button class="qty-btn" onclick="increaseQty('${item.name}')">+</button>
+            </div>
+        `;
+
+        cartItems.appendChild(div);
+    });
+
+    document.getElementById("cart-count").innerText = totalItems;
+    document.getElementById("total").innerText = total.toFixed(2);
+}
+
+function orderViaWhatsApp(){
+    if(cart.length === 0){
+        alert("Your cart is empty!");
+        return;
+    }
+
+    let message = "Hello Haus of Bakes! I would like to order:%0A";
+
+    cart.forEach(item=>{
+        message += `- ${item.name} x${item.quantity} ($${item.price * item.quantity})%0A`;
+    });
+
+    let total = cart.reduce((sum,item)=> sum + item.price * item.quantity,0);
+
+    message += `%0ATotal: $${total}%0A%0APlease confirm my order.`;
+
+    window.open(`https://wa.me/9779765501697?text=${message}`,'_blank');
 }
 </script>
 
+<a href="https://wa.me/9779765501697" 
+   class="whatsapp-float" 
+   target="_blank">
+   💬
+</a>
 </body>
 </html>
