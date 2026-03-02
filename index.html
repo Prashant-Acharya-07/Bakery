@@ -251,6 +251,41 @@ footer {
   margin: 0 auto;
   padding: 0 10px; /* optional padding for small screens */
 }
+    .blogs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 blogs per row on desktop */
+  gap: 25px;
+  text-align: left;
+}
+
+.blog-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(183, 110, 121, 0.1);
+}
+
+.blog-card h3 {
+  color: #b76e79;
+  margin-bottom: 10px;
+}
+
+.blog-card p {
+  font-size: 14px;
+  color: #5a4a4a;
+}
+
+@media (max-width: 1024px) {
+  .blogs {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .blogs {
+    grid-template-columns: 1fr; /* 1 per row on mobile */
+  }
+}
 </style>
 </head>
 
@@ -376,6 +411,36 @@ footer {
       <p>Classic carrot cake with cream cheese frosting and warm spices.</p>
       <div class="price">$16</div>
       <button class="btn" onclick="addToCart('Carrot Cake', 16)">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+    <section class="section" id="blog">
+  <h2>Our Blog</h2>
+  <div class="blogs">
+    <div class="blog-card">
+      <h3>Top 5 Cake Decorating Tips</h3>
+      <p>Learn easy ways to make your cakes look beautiful at home with simple decorating tricks.</p>
+    </div>
+
+    <div class="blog-card">
+      <h3>Healthy Baking: Substitutes for Sugar and Butter</h3>
+      <p>Discover how to make desserts a bit healthier without losing flavor.</p>
+    </div>
+
+    <div class="blog-card">
+      <h3>Seasonal Fruits in Our Pastries</h3>
+      <p>Fresh seasonal fruits make our pastries delicious and natural. Find out which fruits we use!</p>
+    </div>
+
+    <div class="blog-card">
+      <h3>Behind the Scenes: How We Bake Daily</h3>
+      <p>Peek into our daily bakery routine and see how we bake with love and care.</p>
+    </div>
+
+    <div class="blog-card">
+      <h3>Choosing the Perfect Cake for Every Occasion</h3>
+      <p>Tips to pick the right cake for birthdays, weddings, and festive celebrations.</p>
     </div>
   </div>
 </section>
